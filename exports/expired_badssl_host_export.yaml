@@ -1,0 +1,19 @@
+zabbix_export:
+  version: '7.0'
+  host_groups:
+    - uuid: 018ae73bd37e4459a5040dd23ee7b4f4
+      name: 'Web Certificate'
+  hosts:
+    - host: expired.badssl.com
+      name: 'Expired BadSSL Certificate'
+      templates:
+        - name: 'Website certificate by Zabbix agent 2'
+      groups:
+        - name: 'Web Certificate'
+      interfaces:
+        - ip: 192.168.1.2
+          interface_ref: if1
+      macros:
+        - macro: '{$CERT.WEBSITE.HOSTNAME}'
+          value: expired.badssl.com
+      inventory_mode: DISABLED
